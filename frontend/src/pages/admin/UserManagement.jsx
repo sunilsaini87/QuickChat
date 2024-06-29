@@ -1,6 +1,6 @@
 import { useFetchData } from "6pp";
 import { Avatar, Skeleton } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AdminLayout from "../../components/layout/AdminLayout";
 import Table from "../../components/shared/Table";
 import { server } from "../../constants/config";

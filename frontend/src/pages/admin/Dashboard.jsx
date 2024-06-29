@@ -15,7 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 import moment from "moment";
-import React from "react";
+
 import AdminLayout from "../../components/layout/AdminLayout";
 import { DoughnutChart, LineChart } from "../../components/specific/Charts";
 import {
@@ -174,6 +174,7 @@ const Dashboard = () => {
   );
 };
 
+// eslint-disable-next-line react/prop-types
 const Widget = ({ title, value, Icon }) => (
   <Paper
     elevation={3}
