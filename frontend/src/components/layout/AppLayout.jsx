@@ -1,5 +1,5 @@
 import { Drawer, Grid, Skeleton } from "@mui/material";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -27,8 +27,8 @@ import ChatList from "../specific/ChatList";
 import Profile from "../specific/Profile";
 import Header from "./Header";
 
-const AppLayout = () => (WrappedComponent) => {
-  return (props) => {
+const AppLayout = (WrappedComponent) => {
+  const AppContainer = (props) => {
     const params = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -64,7 +64,7 @@ const AppLayout = () => (WrappedComponent) => {
         if (data.chatId === chatId) return;
         dispatch(setNewMessagesAlert(data));
       },
-      [chatId]
+      [chatId, dispatch]
     );
 
     const newRequestListener = useCallback(() => {
@@ -157,6 +157,8 @@ const AppLayout = () => (WrappedComponent) => {
       </>
     );
   };
+
+  return AppContainer;
 };
 
 export default AppLayout;
