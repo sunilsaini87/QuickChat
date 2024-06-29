@@ -49,7 +49,7 @@ export const sampleNotifications = [
 export const sampleMessage = [
   {
     attachments: [],
-    content: "L*uda ka Message hai",
+    content: "Message",
     _id: "sfnsdjkfsdnfkjsbnd",
     sender: {
       _id: "user._id",
@@ -135,7 +135,7 @@ export const dashboardData = {
   messages: [
     {
       attachments: [],
-      content: "L*uda ka Message hai",
+      content: "Message",
       _id: "sfnsdjkfsdnfkjsbnd",
       sender: {
         avatar: "https://www.w3schools.com/howto/img_avatar.png",

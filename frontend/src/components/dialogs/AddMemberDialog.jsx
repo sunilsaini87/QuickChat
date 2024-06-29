@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   Button,
   Dialog,
@@ -6,8 +7,8 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
-import { sampleUsers } from "../../constants/sampleData";
+import { useState } from "react";
+// import { sampleUsers } from "../../constants/sampleData";
 import UserItem from "../shared/UserItem";
 import {
   useAddGroupMembersMutation,
@@ -16,6 +17,7 @@ import {
 import { useAsyncMutation, useErrors } from "../../hooks/hook";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsAddMember } from "../../redux/reducers/misc";
+
 const AddMemberDialog = ({ chatId }) => {
   const dispatch = useDispatch();
 
@@ -40,12 +42,14 @@ const AddMemberDialog = ({ chatId }) => {
   const closeHandler = () => {
     dispatch(setIsAddMember(false));
   };
+
   const addMemberSubmitHandler = () => {
     addMembers("Adding Members...", { members: selectedMembers, chatId });
     closeHandler();
   };
 
   useErrors([{ isError, error }]);
+
   return (
     <Dialog open={isAddMember} onClose={closeHandler}>
       <Stack p={"2rem"} width={"20rem"} spacing={"2rem"}>
@@ -87,6 +91,10 @@ const AddMemberDialog = ({ chatId }) => {
       </Stack>
     </Dialog>
   );
+};
+
+AddMemberDialog.propTypes = {
+  chatId: PropTypes.string.isRequired,
 };
 
 export default AddMemberDialog;
