@@ -1,5 +1,6 @@
-import { ListItemText, Menu, MenuItem, MenuList, Tooltip } from "@mui/material";
-import React, { useRef } from "react";
+import { useRef } from "react";
+import PropTypes from "prop-types";
+import { Menu, MenuItem, MenuList, Tooltip, ListItemText } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsFileMenu, setUploadingLoader } from "../../redux/reducers/misc";
 import {
@@ -13,7 +14,6 @@ import { useSendAttachmentsMutation } from "../../redux/api/api";
 
 const FileMenu = ({ anchorE1, chatId }) => {
   const { isFileMenu } = useSelector((state) => state.misc);
-
   const dispatch = useDispatch();
 
   const imageRef = useRef(null);
@@ -25,18 +25,17 @@ const FileMenu = ({ anchorE1, chatId }) => {
 
   const closeFileMenu = () => dispatch(setIsFileMenu(false));
 
-  const selectImage = () => imageRef.current?.click();
-  const selectAudio = () => audioRef.current?.click();
-  const selectVideo = () => videoRef.current?.click();
-  const selectFile = () => fileRef.current?.click();
+  const selectFile = (ref) => ref.current?.click();
 
   const fileChangeHandler = async (e, key) => {
     const files = Array.from(e.target.files);
 
-    if (files.length <= 0) return;
+    if (files.length === 0) return;
 
-    if (files.length > 5)
-      return toast.error(`You can only send 5 ${key} at a time`);
+    if (files.length > 5) {
+      toast.error(`You can only send 5 ${key} at a time`);
+      return;
+    }
 
     dispatch(setUploadingLoader(true));
 
@@ -44,19 +43,19 @@ const FileMenu = ({ anchorE1, chatId }) => {
     closeFileMenu();
 
     try {
-      const myForm = new FormData();
+      const formData = new FormData();
+      formData.append("chatId", chatId);
+      files.forEach((file) => formData.append("files", file));
 
-      myForm.append("chatId", chatId);
-      files.forEach((file) => myForm.append("files", file));
+      const res = await sendAttachments(formData);
 
-      const res = await sendAttachments(myForm);
-
-      if (res.data) toast.success(`${key} sent successfully`, { id: toastId });
-      else toast.error(`Failed to send ${key}`, { id: toastId });
-
-      // Fetching Here
+      if (res.data) {
+        toast.success(`${key} sent successfully`, { id: toastId });
+      } else {
+        toast.error(`Failed to send ${key}`, { id: toastId });
+      }
     } catch (error) {
-      toast.error(error, { id: toastId });
+      toast.error(`Error: ${error}`, { id: toastId });
     } finally {
       dispatch(setUploadingLoader(false));
     }
@@ -64,13 +63,9 @@ const FileMenu = ({ anchorE1, chatId }) => {
 
   return (
     <Menu anchorEl={anchorE1} open={isFileMenu} onClose={closeFileMenu}>
-      <div
-        style={{
-          width: "10rem",
-        }}
-      >
+      <div style={{ width: "10rem" }}>
         <MenuList>
-          <MenuItem onClick={selectImage}>
+          <MenuItem onClick={() => selectFile(imageRef)}>
             <Tooltip title="Image">
               <ImageIcon />
             </Tooltip>
@@ -85,7 +80,7 @@ const FileMenu = ({ anchorE1, chatId }) => {
             />
           </MenuItem>
 
-          <MenuItem onClick={selectAudio}>
+          <MenuItem onClick={() => selectFile(audioRef)}>
             <Tooltip title="Audio">
               <AudioFileIcon />
             </Tooltip>
@@ -100,7 +95,7 @@ const FileMenu = ({ anchorE1, chatId }) => {
             />
           </MenuItem>
 
-          <MenuItem onClick={selectVideo}>
+          <MenuItem onClick={() => selectFile(videoRef)}>
             <Tooltip title="Video">
               <VideoFileIcon />
             </Tooltip>
@@ -115,7 +110,7 @@ const FileMenu = ({ anchorE1, chatId }) => {
             />
           </MenuItem>
 
-          <MenuItem onClick={selectFile}>
+          <MenuItem onClick={() => selectFile(fileRef)}>
             <Tooltip title="File">
               <UploadFileIcon />
             </Tooltip>
@@ -133,6 +128,11 @@ const FileMenu = ({ anchorE1, chatId }) => {
       </div>
     </Menu>
   );
+};
+
+FileMenu.propTypes = {
+  anchorE1: PropTypes.object,
+  chatId: PropTypes.string.isRequired,
 };
 
 export default FileMenu;

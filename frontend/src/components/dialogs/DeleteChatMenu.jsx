@@ -1,5 +1,6 @@
+import { useEffect } from "react";
+import PropTypes from "prop-types";
 import { Menu, Stack, Typography } from "@mui/material";
-import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { setIsDeleteMenu } from "../../redux/reducers/misc";
 import {
@@ -23,7 +24,6 @@ const DeleteChatMenu = ({ dispatch, deleteMenuAnchor }) => {
   const [deleteChat, _, deleteChatData] = useAsyncMutation(
     useDeleteChatMutation
   );
-
   const [leaveGroup, __, leaveGroupData] = useAsyncMutation(
     useLeaveGroupMutation
   );
@@ -47,7 +47,7 @@ const DeleteChatMenu = ({ dispatch, deleteMenuAnchor }) => {
 
   useEffect(() => {
     if (deleteChatData || leaveGroupData) navigate("/");
-  }, [deleteChatData, leaveGroupData]);
+  }, [deleteChatData, leaveGroupData, navigate]);
 
   return (
     <Menu
@@ -69,9 +69,9 @@ const DeleteChatMenu = ({ dispatch, deleteMenuAnchor }) => {
           padding: "0.5rem",
           cursor: "pointer",
         }}
-        direction={"row"}
-        alignItems={"center"}
-        spacing={"0.5rem"}
+        direction="row"
+        alignItems="center"
+        spacing="0.5rem"
         onClick={isGroup ? leaveGroupHandler : deleteChatHandler}
       >
         {isGroup ? (
@@ -88,6 +88,11 @@ const DeleteChatMenu = ({ dispatch, deleteMenuAnchor }) => {
       </Stack>
     </Menu>
   );
+};
+
+DeleteChatMenu.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  deleteMenuAnchor: PropTypes.object.isRequired,
 };
 
 export default DeleteChatMenu;
