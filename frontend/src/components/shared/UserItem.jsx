@@ -1,12 +1,13 @@
+import { memo } from "react";
+import PropTypes from "prop-types";
 import { Add as AddIcon, Remove as RemoveIcon } from "@mui/icons-material";
 import { Avatar, IconButton, ListItem, Stack, Typography } from "@mui/material";
-import React, { memo } from "react";
 import { transformImage } from "../../lib/features";
 
 const UserItem = ({
   user,
   handler,
-  handlerIsLoading,
+  handlerIsLoading = false,
   isAdded = false,
   styling = {},
 }) => {
@@ -15,10 +16,10 @@ const UserItem = ({
   return (
     <ListItem>
       <Stack
-        direction={"row"}
-        alignItems={"center"}
-        spacing={"1rem"}
-        width={"100%"}
+        direction="row"
+        alignItems="center"
+        spacing="1rem"
+        width="100%"
         {...styling}
       >
         <Avatar src={transformImage(avatar)} />
@@ -26,7 +27,7 @@ const UserItem = ({
         <Typography
           variant="body1"
           sx={{
-            flexGlow: 1,
+            flexGrow: 1,
             display: "-webkit-box",
             WebkitLineClamp: 1,
             WebkitBoxOrient: "vertical",
@@ -55,6 +56,24 @@ const UserItem = ({
       </Stack>
     </ListItem>
   );
+};
+
+UserItem.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
+  }).isRequired,
+  handler: PropTypes.func.isRequired,
+  handlerIsLoading: PropTypes.bool,
+  isAdded: PropTypes.bool,
+  styling: PropTypes.object,
+};
+
+UserItem.defaultProps = {
+  handlerIsLoading: false,
+  isAdded: false,
+  styling: {},
 };
 
 export default memo(UserItem);

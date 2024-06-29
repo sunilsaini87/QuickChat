@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
-import React, { memo } from "react";
+import { memo } from "react";
+import PropTypes from "prop-types";
 import { lightBlue } from "../../constants/color";
 import moment from "moment";
 import { fileFormat } from "../../lib/features";
@@ -8,9 +9,7 @@ import { motion } from "framer-motion";
 
 const MessageComponent = ({ message, user }) => {
   const { sender, content, attachments = [], createdAt } = message;
-
   const sameSender = sender?._id === user?._id;
-
   const timeAgo = moment(createdAt).fromNow();
 
   return (
@@ -27,7 +26,7 @@ const MessageComponent = ({ message, user }) => {
       }}
     >
       {!sameSender && (
-        <Typography color={lightBlue} fontWeight={"600"} variant="caption">
+        <Typography color={lightBlue} fontWeight={600} variant="caption">
           {sender.name}
         </Typography>
       )}
@@ -44,10 +43,9 @@ const MessageComponent = ({ message, user }) => {
               <a
                 href={url}
                 target="_blank"
+                rel="noopener noreferrer"
                 download
-                style={{
-                  color: "black",
-                }}
+                style={{ color: "black" }}
               >
                 {RenderAttachment(file, url)}
               </a>
@@ -55,11 +53,30 @@ const MessageComponent = ({ message, user }) => {
           );
         })}
 
-      <Typography variant="caption" color={"text.secondary"}>
+      <Typography variant="caption" color="text.secondary">
         {timeAgo}
       </Typography>
     </motion.div>
   );
+};
+
+MessageComponent.propTypes = {
+  message: PropTypes.shape({
+    sender: PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired,
+    content: PropTypes.string,
+    attachments: PropTypes.arrayOf(
+      PropTypes.shape({
+        url: PropTypes.string.isRequired,
+      })
+    ),
+    createdAt: PropTypes.string.isRequired,
+  }).isRequired,
+  user: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default memo(MessageComponent);

@@ -16,7 +16,7 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link as LinkComponent, Navigate, useLocation } from "react-router-dom";
 import { grayColor, matBlack } from "../../constants/color";
 import { useDispatch, useSelector } from "react-redux";
@@ -55,6 +55,7 @@ const adminTabs = [
   },
 ];
 
+// eslint-disable-next-line react/prop-types
 const Sidebar = ({ w = "100%" }) => {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -66,7 +67,7 @@ const Sidebar = ({ w = "100%" }) => {
   return (
     <Stack width={w} direction={"column"} p={"3rem"} spacing={"3rem"}>
       <Typography variant="h5" textTransform={"uppercase"}>
-        Chattu
+        QuickChat
       </Typography>
 
       <Stack spacing={"1rem"}>
@@ -102,6 +103,7 @@ const Sidebar = ({ w = "100%" }) => {
   );
 };
 
+// eslint-disable-next-line react/prop-types
 const AdminLayout = ({ children }) => {
   const { isAdmin } = useSelector((state) => state.auth);
 

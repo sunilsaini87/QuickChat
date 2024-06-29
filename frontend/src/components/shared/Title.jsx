@@ -1,9 +1,9 @@
-import React from "react";
+import PropTypes from "prop-types";
 import { Helmet } from "react-helmet-async";
 
 const Title = ({
   title = "Chat App",
-  description = "this is the Chat App called Chattu",
+  description = "This is the Chat App called Chattu",
 }) => {
   return (
     <Helmet>
@@ -11,6 +11,11 @@ const Title = ({
       <meta name="description" content={description} />
     </Helmet>
   );
+};
+
+Title.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
 };
 
 export default Title;

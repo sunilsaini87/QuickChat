@@ -1,9 +1,9 @@
-import React from "react";
+import PropTypes from "prop-types";
 import { DataGrid } from "@mui/x-data-grid";
 import { Container, Paper, Typography } from "@mui/material";
 import { matBlack } from "../../constants/color";
 
-const Table = ({ rows, columns, heading, rowHeight = 52 }) => {
+const Table = ({ rows, columns, heading, rowHeight }) => {
   return (
     <Container
       sx={{
@@ -36,20 +36,40 @@ const Table = ({ rows, columns, heading, rowHeight = 52 }) => {
           rows={rows}
           columns={columns}
           rowHeight={rowHeight}
-          style={{
-            height: "80%",
-          }}
           sx={{
+            height: "80%",
             border: "none",
-            ".table-header": {
+            ".MuiDataGrid-columnHeaders": {
               bgcolor: matBlack,
               color: "white",
+            },
+            ".MuiDataGrid-cell": {
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
             },
           }}
         />
       </Paper>
     </Container>
   );
+};
+
+Table.propTypes = {
+  rows: PropTypes.arrayOf(PropTypes.object).isRequired,
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      field: PropTypes.string.isRequired,
+      headerName: PropTypes.string.isRequired,
+      width: PropTypes.number,
+    })
+  ).isRequired,
+  heading: PropTypes.string.isRequired,
+  rowHeight: PropTypes.number,
+};
+
+Table.defaultProps = {
+  rowHeight: 52,
 };
 
 export default Table;

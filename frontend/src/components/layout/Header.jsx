@@ -1,3 +1,5 @@
+import { lazy, Suspense } from "react";
+import PropTypes from "prop-types";
 import {
   AppBar,
   Backdrop,
@@ -8,7 +10,6 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import React, { Suspense, lazy, useState } from "react";
 import { orange } from "../../constants/color";
 import {
   Add as AddIcon,
@@ -33,7 +34,7 @@ import {
 import { resetNotificationCount } from "../../redux/reducers/chat";
 
 const SearchDialog = lazy(() => import("../specific/Search"));
-const NotifcationDialog = lazy(() => import("../specific/Notifications"));
+const NotificationDialog = lazy(() => import("../specific/Notifications"));
 const NewGroupDialog = lazy(() => import("../specific/NewGroup"));
 
 const Header = () => {
@@ -49,9 +50,7 @@ const Header = () => {
 
   const openSearch = () => dispatch(setIsSearch(true));
 
-  const openNewGroup = () => {
-    dispatch(setIsNewGroup(true));
-  };
+  const openNewGroup = () => dispatch(setIsNewGroup(true));
 
   const openNotification = () => {
     dispatch(setIsNotification(true));
@@ -75,64 +74,51 @@ const Header = () => {
   return (
     <>
       <Box sx={{ flexGrow: 1 }} height={"4rem"}>
-        <AppBar
-          position="static"
-          sx={{
-            bgcolor: orange,
-          }}
-        >
+        <AppBar position="static" sx={{ bgcolor: orange }}>
           <Toolbar>
             <Typography
               variant="h6"
-              sx={{
-                display: { xs: "none", sm: "block" },
-              }}
+              sx={{ display: { xs: "none", sm: "block" } }}
             >
               Chattu
             </Typography>
 
-            <Box
-              sx={{
-                display: { xs: "block", sm: "none" },
-              }}
-            >
+            <Box sx={{ display: { xs: "block", sm: "none" } }}>
               <IconButton color="inherit" onClick={handleMobile}>
                 <MenuIcon />
               </IconButton>
             </Box>
-            <Box
-              sx={{
-                flexGrow: 1,
-              }}
-            />
+
+            <Box sx={{ flexGrow: 1 }} />
+
             <Box>
               <IconBtn
-                title={"Search"}
+                title="Search"
                 icon={<SearchIcon />}
                 onClick={openSearch}
               />
 
               <IconBtn
-                title={"New Group"}
+                title="New Group"
                 icon={<AddIcon />}
                 onClick={openNewGroup}
               />
 
               <IconBtn
-                title={"Manage Groups"}
+                title="Manage Groups"
                 icon={<GroupIcon />}
                 onClick={navigateToGroup}
               />
 
               <IconBtn
-                title={"Notifications"}
+                title="Notifications"
                 icon={<NotificationsIcon />}
                 onClick={openNotification}
                 value={notificationCount}
               />
 
               <IconBtn
-                title={"Logout"}
+                title="Logout"
                 icon={<LogoutIcon />}
                 onClick={logoutHandler}
               />
@@ -149,7 +135,7 @@ const Header = () => {
 
       {isNotification && (
         <Suspense fallback={<Backdrop open />}>
-          <NotifcationDialog />
+          <NotificationDialog />
         </Suspense>
       )}
 
@@ -176,6 +162,13 @@ const IconBtn = ({ title, icon, onClick, value }) => {
       </IconButton>
     </Tooltip>
   );
+};
+
+IconBtn.propTypes = {
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.node.isRequired,
+  onClick: PropTypes.func.isRequired,
+  value: PropTypes.number,
 };
 
 export default Header;

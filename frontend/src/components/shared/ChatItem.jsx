@@ -1,4 +1,5 @@
-import React, { memo } from "react";
+import { memo } from "react";
+import PropTypes from "prop-types";
 import { Link } from "../styles/StyledComponents";
 import { Box, Stack, Typography } from "@mui/material";
 import AvatarCard from "./AvatarCard";
@@ -17,9 +18,7 @@ const ChatItem = ({
 }) => {
   return (
     <Link
-      sx={{
-        padding: "0",
-      }}
+      sx={{ padding: 0 }}
       to={`/chat/${_id}`}
       onContextMenu={(e) => handleDeleteChat(e, _id, groupChat)}
     >
@@ -40,17 +39,20 @@ const ChatItem = ({
         <AvatarCard avatar={avatar} />
 
         <Stack>
-          <Typography>{name}</Typography>
+          <Typography variant="body1">{name}</Typography>
           {newMessageAlert && (
-            <Typography>{newMessageAlert.count} New Message</Typography>
+            <Typography variant="body2" color="textSecondary">
+              {newMessageAlert.count} New Message
+              {newMessageAlert.count > 1 ? "s" : ""}
+            </Typography>
           )}
         </Stack>
 
         {isOnline && (
           <Box
             sx={{
-              width: "10px",
-              height: "10px",
+              width: 10,
+              height: 10,
               borderRadius: "50%",
               backgroundColor: "green",
               position: "absolute",
@@ -63,6 +65,20 @@ const ChatItem = ({
       </motion.div>
     </Link>
   );
+};
+
+ChatItem.propTypes = {
+  avatar: PropTypes.arrayOf(PropTypes.object),
+  name: PropTypes.string.isRequired,
+  _id: PropTypes.string.isRequired,
+  groupChat: PropTypes.bool,
+  sameSender: PropTypes.bool,
+  isOnline: PropTypes.bool,
+  newMessageAlert: PropTypes.shape({
+    count: PropTypes.number,
+  }),
+  index: PropTypes.number,
+  handleDeleteChat: PropTypes.func.isRequired,
 };
 
 export default memo(ChatItem);
