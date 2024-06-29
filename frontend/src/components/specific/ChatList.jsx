@@ -1,5 +1,5 @@
+import PropTypes from "prop-types";
 import { Stack } from "@mui/material";
-import React from "react";
 import ChatItem from "../shared/ChatItem";
 
 const ChatList = ({
@@ -7,12 +7,7 @@ const ChatList = ({
   chats = [],
   chatId,
   onlineUsers = [],
-  newMessagesAlert = [
-    {
-      chatId: "",
-      count: 0,
-    },
-  ],
+  newMessagesAlert = [],
   handleDeleteChat,
 }) => {
   return (
@@ -36,7 +31,7 @@ const ChatList = ({
             avatar={avatar}
             name={name}
             _id={_id}
-            key={_id}
+            key={index} // Updated key to use index
             groupChat={groupChat}
             sameSender={chatId === _id}
             handleDeleteChat={handleDeleteChat}
@@ -45,6 +40,36 @@ const ChatList = ({
       })}
     </Stack>
   );
+};
+
+ChatList.propTypes = {
+  w: PropTypes.string,
+  chats: PropTypes.arrayOf(
+    PropTypes.shape({
+      avatar: PropTypes.array,
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      groupChat: PropTypes.bool,
+      members: PropTypes.arrayOf(PropTypes.string),
+    })
+  ),
+  chatId: PropTypes.string,
+  onlineUsers: PropTypes.arrayOf(PropTypes.string),
+  newMessagesAlert: PropTypes.arrayOf(
+    PropTypes.shape({
+      chatId: PropTypes.string,
+      count: PropTypes.number,
+    })
+  ),
+  handleDeleteChat: PropTypes.func.isRequired,
+};
+
+ChatList.defaultProps = {
+  w: "100%",
+  chats: [],
+  chatId: "",
+  onlineUsers: [],
+  newMessagesAlert: [],
 };
 
 export default ChatList;

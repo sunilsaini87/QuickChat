@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types";
 import { Avatar, Stack, Typography } from "@mui/material";
 import {
   Face as FaceIcon,
@@ -37,6 +37,21 @@ const Profile = ({ user }) => {
   );
 };
 
+Profile.propTypes = {
+  user: PropTypes.shape({
+    avatar: PropTypes.shape({
+      url: PropTypes.string.isRequired,
+    }),
+    bio: PropTypes.string,
+    username: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    createdAt: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.string,
+    ]).isRequired,
+  }).isRequired,
+};
+
 const ProfileCard = ({ text, Icon, heading }) => (
   <Stack
     direction={"row"}
@@ -55,5 +70,11 @@ const ProfileCard = ({ text, Icon, heading }) => (
     </Stack>
   </Stack>
 );
+
+ProfileCard.propTypes = {
+  text: PropTypes.string.isRequired,
+  Icon: PropTypes.element,
+  heading: PropTypes.string.isRequired,
+};
 
 export default Profile;

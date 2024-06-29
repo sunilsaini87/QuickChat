@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   ArcElement,
   CategoryScale,
@@ -9,7 +10,6 @@ import {
   PointElement,
   Tooltip,
 } from "chart.js";
-import React from "react";
 import { Doughnut, Line } from "react-chartjs-2";
 import {
   orange,
@@ -42,7 +42,6 @@ const lineChartOptions = {
       display: false,
     },
   },
-
   scales: {
     x: {
       grid: {
@@ -58,7 +57,7 @@ const lineChartOptions = {
   },
 };
 
-const LineChart = ({ value = [] }) => {
+const LineChart = ({ value }) => {
   const data = {
     labels,
     datasets: [
@@ -75,6 +74,14 @@ const LineChart = ({ value = [] }) => {
   return <Line data={data} options={lineChartOptions} />;
 };
 
+LineChart.propTypes = {
+  value: PropTypes.arrayOf(PropTypes.number),
+};
+
+LineChart.defaultProps = {
+  value: [],
+};
+
 const doughnutChartOptions = {
   responsive: true,
   plugins: {
@@ -85,7 +92,7 @@ const doughnutChartOptions = {
   cutout: 120,
 };
 
-const DoughnutChart = ({ value = [], labels = [] }) => {
+const DoughnutChart = ({ value, labels }) => {
   const data = {
     labels,
     datasets: [
@@ -98,6 +105,7 @@ const DoughnutChart = ({ value = [], labels = [] }) => {
       },
     ],
   };
+
   return (
     <Doughnut
       style={{ zIndex: 10 }}
@@ -105,6 +113,16 @@ const DoughnutChart = ({ value = [], labels = [] }) => {
       options={doughnutChartOptions}
     />
   );
+};
+
+DoughnutChart.propTypes = {
+  value: PropTypes.arrayOf(PropTypes.number),
+  labels: PropTypes.arrayOf(PropTypes.string),
+};
+
+DoughnutChart.defaultProps = {
+  value: [],
+  labels: [],
 };
 
 export { DoughnutChart, LineChart };
