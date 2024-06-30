@@ -27,8 +27,8 @@ import ChatList from "../specific/ChatList";
 import Profile from "../specific/Profile";
 import Header from "./Header";
 
-const AppLayout = (WrappedComponent) => {
-  const AppContainer = (props) => {
+const AppLayout = () => (WrappedComponent) => {
+  return (props) => {
     const params = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -64,7 +64,7 @@ const AppLayout = (WrappedComponent) => {
         if (data.chatId === chatId) return;
         dispatch(setNewMessagesAlert(data));
       },
-      [chatId, dispatch]
+      [chatId]
     );
 
     const newRequestListener = useCallback(() => {
@@ -157,8 +157,6 @@ const AppLayout = (WrappedComponent) => {
       </>
     );
   };
-
-  return AppContainer;
 };
 
 export default AppLayout;

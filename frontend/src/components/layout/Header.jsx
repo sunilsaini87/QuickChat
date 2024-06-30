@@ -80,7 +80,7 @@ const Header = () => {
               variant="h6"
               sx={{ display: { xs: "none", sm: "block" } }}
             >
-              Chattu
+              QuickChat
             </Typography>
 
             <Box sx={{ display: { xs: "block", sm: "none" } }}>

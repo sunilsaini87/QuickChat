@@ -16,7 +16,7 @@ import {
   Typography,
   styled,
 } from "@mui/material";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link as LinkComponent, Navigate, useLocation } from "react-router-dom";
 import { grayColor, matBlack } from "../../constants/color";
 import { useDispatch, useSelector } from "react-redux";
@@ -55,7 +55,6 @@ const adminTabs = [
   },
 ];
 
-// eslint-disable-next-line react/prop-types
 const Sidebar = ({ w = "100%" }) => {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -103,7 +102,6 @@ const Sidebar = ({ w = "100%" }) => {
   );
 };
 
-// eslint-disable-next-line react/prop-types
 const AdminLayout = ({ children }) => {
   const { isAdmin } = useSelector((state) => state.auth);
 
