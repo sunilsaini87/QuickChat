@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Add as AddIcon,
   Delete as DeleteIcon,
@@ -19,7 +20,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import React, { Suspense, lazy, memo, useEffect, useState } from "react";
+import { Suspense, lazy, memo, useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { LayoutLoader } from "../components/layout/Loaders";
 import AvatarCard from "../components/shared/AvatarCard";
@@ -66,6 +67,7 @@ const Groups = () => {
     useRemoveGroupMemberMutation
   );
 
+  // eslint-disable-next-line no-unused-vars
   const [deleteGroup, isLoadingDeleteGroup] = useAsyncMutation(
     useDeleteChatMutation
   );
@@ -402,6 +404,7 @@ const GroupsList = ({ w = "100%", myGroups = [], chatId }) => (
   </Stack>
 );
 
+// eslint-disable-next-line react/display-name
 const GroupListItem = memo(({ group, chatId }) => {
   const { name, avatar, _id } = group;
 

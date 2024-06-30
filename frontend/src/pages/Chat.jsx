@@ -1,10 +1,5 @@
-import React, {
-  Fragment,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+/* eslint-disable react/prop-types */
+import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import AppLayout from "../components/layout/AppLayout";
 import { IconButton, Skeleton, Stack } from "@mui/material";
 import { grayColor, orange } from "../constants/color";
