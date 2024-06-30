@@ -9,10 +9,14 @@ import moment from "moment";
 import { transformImage } from "../../lib/features";
 
 const Profile = ({ user }) => {
+  if (!user) {
+    return <Typography variant="body1">Loading...</Typography>; // Optional: Replace with a loading spinner or message
+  }
+
   return (
     <Stack spacing={"2rem"} direction={"column"} alignItems={"center"}>
       <Avatar
-        src={transformImage(user?.avatar?.url)}
+        src={user?.avatar?.url ? transformImage(user.avatar.url) : ""}
         sx={{
           width: 200,
           height: 200,
@@ -21,16 +25,22 @@ const Profile = ({ user }) => {
           border: "5px solid white",
         }}
       />
-      <ProfileCard heading={"Bio"} text={user?.bio} />
+      <ProfileCard heading={"Bio"} text={user?.bio || "Not provided"} />
       <ProfileCard
         heading={"Username"}
-        text={user?.username}
+        text={user?.username || "Not provided"}
         Icon={<UserNameIcon />}
       />
-      <ProfileCard heading={"Name"} text={user?.name} Icon={<FaceIcon />} />
+      <ProfileCard
+        heading={"Name"}
+        text={user?.name || "Not provided"}
+        Icon={<FaceIcon />}
+      />
       <ProfileCard
         heading={"Joined"}
-        text={moment(user?.createdAt).fromNow()}
+        text={
+          user?.createdAt ? moment(user.createdAt).fromNow() : "Not provided"
+        }
         Icon={<CalendarIcon />}
       />
     </Stack>
@@ -49,7 +59,7 @@ Profile.propTypes = {
       PropTypes.instanceOf(Date),
       PropTypes.string,
     ]).isRequired,
-  }).isRequired,
+  }),
 };
 
 const ProfileCard = ({ text, Icon, heading }) => (

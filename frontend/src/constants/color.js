@@ -1,10 +1,10 @@
-export const orange = "rgb(17 24 39)";
-export const orangeLight = "rgba(234, 112, 112,0.2)";
+export const orange = "rgb(23 23 23)";
+export const orangeLight = "rgba(88, 108, 149, 0.6)";
 
-export const grayColor = "rgba(247,247,247,1)";
-export const lightBlue = "#2694ab";
-export const matBlack = "#1c1c1c";
+export const grayColor = "rgb(38 38 38)";
+export const lightBlue = "rgb(107 114 128)";
+export const matBlack = "rgb(55 65 81)";
 export const bgGradient = "linear-gradient(rgb(15 23 42), rgb(107 114 128))";
 
-export const purple = "rgba(75,12,192,1)";
-export const purpleLight = "rgba(75,12,192,0.2)";
+export const purple = "rgb(75 85 99)";
+export const purpleLight = "rgb(156 163 175)";
