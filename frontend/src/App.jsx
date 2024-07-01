@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { userExists, userNotExists } from "./redux/reducers/auth";
 import { Toaster } from "react-hot-toast";
 import { SocketProvider } from "./socket";
+import Footer from "./pages/Footer";
 
 const Home = lazy(() => import("./pages/Home"));
 const Login = lazy(() => import("./pages/Login"));
@@ -32,6 +33,7 @@ const App = () => {
     axios
       .get(`${server}/api/v1/user/me`, { withCredentials: true })
       .then(({ data }) => dispatch(userExists(data.user)))
+      // eslint-disable-next-line no-unused-vars
       .catch((err) => dispatch(userNotExists()));
   }, [dispatch]);
 
@@ -73,6 +75,7 @@ const App = () => {
       </Suspense>
 
       <Toaster position="bottom-center" />
+      <Footer />
     </BrowserRouter>
   );
 };
