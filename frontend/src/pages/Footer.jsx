@@ -66,17 +66,19 @@ const Footer = () => {
               </Typography>
               <ul style={{ listStyleType: "none", padding: 0 }}>
                 <li>
-                  <Link href="/" css={footerLinkStyles}>
+                  <Link
+                    href="https://github.com/sunilsaini87"
+                    css={footerLinkStyles}
+                  >
                     Github
                   </Link>
                 </li>
+
                 <li>
-                  <Link href="/" css={footerLinkStyles}>
-                    Discord
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/" css={footerLinkStyles}>
+                  <Link
+                    href="https://x.com/Suniltanwar97"
+                    css={footerLinkStyles}
+                  >
                     X
                   </Link>
                 </li>
