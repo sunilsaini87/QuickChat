@@ -8,7 +8,7 @@ const footerStyles = css`
   background-color: #ffffff;
   @media (min-width: 640px) {
     padding: 2rem;
-    background-color: rgb(55 65 81);
+    background-color: rgb(51 65 85);
     color: #ffffff;
   }
 `;
@@ -62,44 +62,22 @@ const Footer = () => {
                 fontWeight="bold"
                 sx={{ color: "inherit", mb: 1 }}
               >
-                Resources
+                Contact
               </Typography>
               <ul style={{ listStyleType: "none", padding: 0 }}>
                 <li>
-                  <Link href="https://flowbite.com" css={footerLinkStyles}>
-                    Flowbite
-                  </Link>
-                </li>
-                <li>
-                  <Link href="https://tailwindcss.com/" css={footerLinkStyles}>
-                    Tailwind CSS
-                  </Link>
-                </li>
-              </ul>
-            </Grid>
-            <Grid item xs={6} md={4} css={resourcesColumnStyles}>
-              <Typography
-                variant="overline"
-                fontWeight="bold"
-                sx={{ color: "inherit", mb: 1 }}
-              >
-                Follow us
-              </Typography>
-              <ul style={{ listStyleType: "none", padding: 0 }}>
-                <li>
-                  <Link
-                    href="https://github.com/themesberg/flowbite"
-                    css={footerLinkStyles}
-                  >
+                  <Link href="/" css={footerLinkStyles}>
                     Github
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="https://discord.gg/4eeurUVvTy"
-                    css={footerLinkStyles}
-                  >
+                  <Link href="/" css={footerLinkStyles}>
                     Discord
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/" css={footerLinkStyles}>
+                    X
                   </Link>
                 </li>
               </ul>

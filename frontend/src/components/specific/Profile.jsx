@@ -67,14 +67,14 @@ const ProfileCard = ({ text, Icon, heading }) => (
     direction={"row"}
     alignItems={"center"}
     spacing={"1rem"}
-    color={"white"}
+    color={"black"}
     textAlign={"center"}
   >
     {Icon && Icon}
 
     <Stack>
       <Typography variant="body1">{text}</Typography>
-      <Typography color={"gray"} variant="caption">
+      <Typography color={"rgb(17 24 39)"} variant="caption">
         {heading}
       </Typography>
     </Stack>

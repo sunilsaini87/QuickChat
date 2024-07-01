@@ -76,6 +76,14 @@ const Header = () => {
       <Box sx={{ flexGrow: 1 }} height={"4rem"}>
         <AppBar position="fixed" sx={{ bgcolor: orange }}>
           <Toolbar>
+            <img
+              src="\public\logo.png"
+              alt="Logo.svg"
+              style={{
+                height: "2rem",
+                marginRight: "0.5rem",
+              }}
+            />
             <Typography
               variant="h6"
               sx={{ display: { xs: "none", sm: "block" } }}
