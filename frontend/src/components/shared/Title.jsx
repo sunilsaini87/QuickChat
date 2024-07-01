@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import { Helmet } from "react-helmet-async";
 
 const Title = ({
-  title = "Chat App",
-  description = "This is the Chat App called Chattu",
+  title = "QuickChat",
+  description = "Enjoy secure and private messaging with QuickChat.",
 }) => {
   return (
     <Helmet>

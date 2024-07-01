@@ -74,7 +74,7 @@ const Header = () => {
   return (
     <>
       <Box sx={{ flexGrow: 1 }} height={"4rem"}>
-        <AppBar position="static" sx={{ bgcolor: orange }}>
+        <AppBar position="fixed" sx={{ bgcolor: orange }}>
           <Toolbar>
             <Typography
               variant="h6"
