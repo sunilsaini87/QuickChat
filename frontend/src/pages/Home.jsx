@@ -11,7 +11,7 @@ const Home = () => {
         border: "1px solid black",
       }}
     >
-      <Typography p={"2rem"} variant="h5" textAlign={"center"} color={"white"}>
+      <Typography p={"2rem"} variant="h5" textAlign={"center"}>
         Select a friend to chat
       </Typography>
     </Box>
