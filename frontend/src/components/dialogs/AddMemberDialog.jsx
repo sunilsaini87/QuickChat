@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import {
   Button,
   Dialog,
@@ -91,10 +90,6 @@ const AddMemberDialog = ({ chatId }) => {
       </Stack>
     </Dialog>
   );
-};
-
-AddMemberDialog.propTypes = {
-  chatId: PropTypes.string.isRequired,
 };
 
 export default AddMemberDialog;

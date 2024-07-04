@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
   Button,
   Dialog,
@@ -40,13 +39,6 @@ const ConfirmDeleteDialog = ({ open, handleClose, deleteHandler, message }) => {
       </DialogActions>
     </Dialog>
   );
-};
-
-ConfirmDeleteDialog.propTypes = {
-  open: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired,
-  deleteHandler: PropTypes.func.isRequired,
-  message: PropTypes.string, // Optional custom message
 };
 
 export default ConfirmDeleteDialog;

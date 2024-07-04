@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import { memo } from "react";
-import PropTypes from "prop-types";
 import { Add as AddIcon, Remove as RemoveIcon } from "@mui/icons-material";
 import { Avatar, IconButton, ListItem, Stack, Typography } from "@mui/material";
 import { transformImage } from "../../lib/features";
@@ -56,24 +56,6 @@ const UserItem = ({
       </Stack>
     </ListItem>
   );
-};
-
-UserItem.propTypes = {
-  user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    _id: PropTypes.string.isRequired,
-    avatar: PropTypes.string,
-  }).isRequired,
-  handler: PropTypes.func.isRequired,
-  handlerIsLoading: PropTypes.bool,
-  isAdded: PropTypes.bool,
-  styling: PropTypes.object,
-};
-
-UserItem.defaultProps = {
-  handlerIsLoading: false,
-  isAdded: false,
-  styling: {},
 };
 
 export default memo(UserItem);

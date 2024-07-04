@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import { Avatar, AvatarGroup, Stack } from "@mui/material";
-import PropTypes from "prop-types";
 import { transformImage } from "../../lib/features";
 
 const AvatarCard = ({ avatar = [], max = 4 }) => {
@@ -22,16 +22,6 @@ const AvatarCard = ({ avatar = [], max = 4 }) => {
       </AvatarGroup>
     </Stack>
   );
-};
-
-AvatarCard.propTypes = {
-  avatar: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-      image: PropTypes.string.isRequired,
-    })
-  ),
-  max: PropTypes.number,
 };
 
 export default AvatarCard;

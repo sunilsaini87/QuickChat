@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import {
   ArcElement,
   CategoryScale,
@@ -74,10 +73,6 @@ const LineChart = ({ value }) => {
   return <Line data={data} options={lineChartOptions} />;
 };
 
-LineChart.propTypes = {
-  value: PropTypes.arrayOf(PropTypes.number),
-};
-
 LineChart.defaultProps = {
   value: [],
 };
@@ -113,16 +108,6 @@ const DoughnutChart = ({ value, labels }) => {
       options={doughnutChartOptions}
     />
   );
-};
-
-DoughnutChart.propTypes = {
-  value: PropTypes.arrayOf(PropTypes.number),
-  labels: PropTypes.arrayOf(PropTypes.string),
-};
-
-DoughnutChart.defaultProps = {
-  value: [],
-  labels: [],
 };
 
 export { DoughnutChart, LineChart };

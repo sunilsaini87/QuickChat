@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 import { Box, Typography } from "@mui/material";
 import { memo } from "react";
-import PropTypes from "prop-types";
 import { lightBlue } from "../../constants/color";
 import moment from "moment";
 import { fileFormat } from "../../lib/features";
@@ -58,25 +58,6 @@ const MessageComponent = ({ message, user }) => {
       </Typography>
     </motion.div>
   );
-};
-
-MessageComponent.propTypes = {
-  message: PropTypes.shape({
-    sender: PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    }).isRequired,
-    content: PropTypes.string,
-    attachments: PropTypes.arrayOf(
-      PropTypes.shape({
-        url: PropTypes.string.isRequired,
-      })
-    ),
-    createdAt: PropTypes.string.isRequired,
-  }).isRequired,
-  user: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
-  }).isRequired,
 };
 
 export default memo(MessageComponent);

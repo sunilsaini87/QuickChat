@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+/* eslint-disable react/prop-types */
 import { DataGrid } from "@mui/x-data-grid";
 import { Container, Paper, Typography } from "@mui/material";
 import { matBlack } from "../../constants/color";
@@ -53,23 +53,6 @@ const Table = ({ rows, columns, heading, rowHeight }) => {
       </Paper>
     </Container>
   );
-};
-
-Table.propTypes = {
-  rows: PropTypes.arrayOf(PropTypes.object).isRequired,
-  columns: PropTypes.arrayOf(
-    PropTypes.shape({
-      field: PropTypes.string.isRequired,
-      headerName: PropTypes.string.isRequired,
-      width: PropTypes.number,
-    })
-  ).isRequired,
-  heading: PropTypes.string.isRequired,
-  rowHeight: PropTypes.number,
-};
-
-Table.defaultProps = {
-  rowHeight: 52,
 };
 
 export default Table;

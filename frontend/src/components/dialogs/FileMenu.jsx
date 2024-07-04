@@ -1,5 +1,4 @@
 import { useRef } from "react";
-import PropTypes from "prop-types";
 import { Menu, MenuItem, MenuList, Tooltip, ListItemText } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsFileMenu, setUploadingLoader } from "../../redux/reducers/misc";
@@ -128,11 +127,6 @@ const FileMenu = ({ anchorE1, chatId }) => {
       </div>
     </Menu>
   );
-};
-
-FileMenu.propTypes = {
-  anchorE1: PropTypes.object,
-  chatId: PropTypes.string.isRequired,
 };
 
 export default FileMenu;

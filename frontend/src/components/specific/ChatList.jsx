@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { Stack } from "@mui/material";
 import ChatItem from "../shared/ChatItem";
 
@@ -40,36 +39,6 @@ const ChatList = ({
       })}
     </Stack>
   );
-};
-
-ChatList.propTypes = {
-  w: PropTypes.string,
-  chats: PropTypes.arrayOf(
-    PropTypes.shape({
-      avatar: PropTypes.array,
-      _id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      groupChat: PropTypes.bool,
-      members: PropTypes.arrayOf(PropTypes.string),
-    })
-  ),
-  chatId: PropTypes.string,
-  onlineUsers: PropTypes.arrayOf(PropTypes.string),
-  newMessagesAlert: PropTypes.arrayOf(
-    PropTypes.shape({
-      chatId: PropTypes.string,
-      count: PropTypes.number,
-    })
-  ),
-  handleDeleteChat: PropTypes.func.isRequired,
-};
-
-ChatList.defaultProps = {
-  w: "100%",
-  chats: [],
-  chatId: "",
-  onlineUsers: [],
-  newMessagesAlert: [],
 };
 
 export default ChatList;

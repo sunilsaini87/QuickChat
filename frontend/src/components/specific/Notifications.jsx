@@ -16,7 +16,6 @@ import {
   useGetNotificationsQuery,
 } from "../../redux/api/api";
 import { setIsNotification } from "../../redux/reducers/misc";
-import PropTypes from "prop-types";
 
 const Notifications = () => {
   const { isNotification } = useSelector((state) => state.misc);
@@ -107,15 +106,5 @@ const NotificationItem = memo(({ sender, _id, handler }) => {
     </ListItem>
   );
 });
-
-NotificationItem.displayName = "NotificationItem";
-NotificationItem.propTypes = {
-  sender: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    avatar: PropTypes.string, // Assuming avatar is optional
-  }).isRequired,
-  _id: PropTypes.string.isRequired,
-  handler: PropTypes.func.isRequired,
-};
 
 export default Notifications;

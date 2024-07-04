@@ -1,5 +1,4 @@
 import { lazy, Suspense } from "react";
-import PropTypes from "prop-types";
 import {
   AppBar,
   Backdrop,
@@ -77,7 +76,7 @@ const Header = () => {
         <AppBar position="fixed" sx={{ bgcolor: orange }}>
           <Toolbar>
             <img
-              src="logo.png"
+              src="/logo.png"
               alt="Logo.svg"
               style={{
                 height: "2rem",
@@ -170,13 +169,6 @@ const IconBtn = ({ title, icon, onClick, value }) => {
       </IconButton>
     </Tooltip>
   );
-};
-
-IconBtn.propTypes = {
-  title: PropTypes.string.isRequired,
-  icon: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired,
-  value: PropTypes.number,
 };
 
 export default Header;

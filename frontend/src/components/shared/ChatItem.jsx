@@ -1,12 +1,12 @@
+/* eslint-disable react/prop-types */
 import { memo } from "react";
-import PropTypes from "prop-types";
 import { Link } from "../styles/StyledComponents";
 import { Box, Stack, Typography } from "@mui/material";
 import AvatarCard from "./AvatarCard";
 import { motion } from "framer-motion";
 
 const ChatItem = ({
-  avatar = [],
+  avatar = {},
   name,
   _id,
   groupChat = false,
@@ -16,6 +16,9 @@ const ChatItem = ({
   index = 0,
   handleDeleteChat,
 }) => {
+  // Ensure avatar is an object
+  const avatarObject = typeof avatar === "string" ? { url: avatar } : avatar;
+
   return (
     <Link
       sx={{ padding: 0, backgroundColor: "rgb(161 161 170)" }}
@@ -36,7 +39,7 @@ const ChatItem = ({
           padding: "1rem",
         }}
       >
-        <AvatarCard avatar={avatar} />
+        <AvatarCard avatar={avatarObject} />
 
         <Stack>
           <Typography variant="body1">{name}</Typography>
@@ -65,20 +68,6 @@ const ChatItem = ({
       </motion.div>
     </Link>
   );
-};
-
-ChatItem.propTypes = {
-  avatar: PropTypes.arrayOf(PropTypes.object),
-  name: PropTypes.string.isRequired,
-  _id: PropTypes.string.isRequired,
-  groupChat: PropTypes.bool,
-  sameSender: PropTypes.bool,
-  isOnline: PropTypes.bool,
-  newMessageAlert: PropTypes.shape({
-    count: PropTypes.number,
-  }),
-  index: PropTypes.number,
-  handleDeleteChat: PropTypes.func.isRequired,
 };
 
 export default memo(ChatItem);

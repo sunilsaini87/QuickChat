@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import PropTypes from "prop-types";
 import { Menu, Stack, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { setIsDeleteMenu } from "../../redux/reducers/misc";
@@ -88,11 +87,6 @@ const DeleteChatMenu = ({ dispatch, deleteMenuAnchor }) => {
       </Stack>
     </Menu>
   );
-};
-
-DeleteChatMenu.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  deleteMenuAnchor: PropTypes.object.isRequired,
 };
 
 export default DeleteChatMenu;
