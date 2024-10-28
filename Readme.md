@@ -49,12 +49,6 @@ QuickChat is a full stack chat application that allows users to communicate in r
 
 ## Installation
 
-### Prerequisites
-
-- Node.js (>= 14.x)
-- MongoDB (or any other database)
-- Git
-
 ### Clone the Repository
 
 ```bash
